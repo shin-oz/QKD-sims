@@ -3,15 +3,15 @@
 
 #include <math.h>
 
-double entanglement(int flag){
-// void entanglement(int flag){
+// *はポインタの指すアドレス
+void entanglement(int flag, double *a_0, double *a_1, double *a_2, double *a_3){
   // 2量子エンタングルメントを作るための4*4行列
   printf("here is operator to make two qubit entanglement\n");
   double operator[4][4] = {
-    {sqrt( 2 )*1,sqrt( 2 )*0,sqrt( 2 )*0,sqrt( 2 )*1},
-    {sqrt( 2 )*0,sqrt( 2 )*1,sqrt( 2 )*1,sqrt( 2 )*0},
-    {sqrt( 2 )*1,sqrt( 2 )*0,sqrt( 2 )*0,sqrt( 2 )*-1},
-    {sqrt( 2 )*0,sqrt( 2 )*1,sqrt( 2 )*-1,sqrt( 2 )*0}
+    {sqrt(2)*1, sqrt(2)*0, sqrt(2)*0, sqrt(2)*1},
+    {sqrt(2)*0, sqrt(2)*1, sqrt(2)*1, sqrt(2)*0},
+    {sqrt(2)*1, sqrt(2)*0, sqrt(2)*0, sqrt(2)*-1},
+    {sqrt(2)*0, sqrt(2)*1, sqrt(2)*-1, sqrt(2)*0}
   };
   for(int b = 0; b < 4; b++){
     for(int a = 0; a < 4; a++){
@@ -88,7 +88,7 @@ double entanglement(int flag){
     printf("\n");
   }
 
-  // 2量子エンタングルメントの結果
+  // 2量子エンタングルメントの作成
   printf("resulut of making engtanglement|Phi^+>is below.\n");
   double entanglement[4][1] = {0,0,0,0};
   for(int a=0; a<4; a++){
@@ -100,18 +100,14 @@ double entanglement(int flag){
   }
   for(int a=0; a<4; a++){
     printf("%f",entanglement[a][0]);
-    if(a==3){
-      printf("\n");
-    }else{
-      printf(",");
-    }
+    printf("\n");
   }
 
-  double probability = 1/pow(sqrt(2),2.0)*100;
-  printf("%fの確率で|01> or -|10>\n",probability);
-  // int probability = 1/pow(sqrt(3),2.0)*100;
-  // printf("%dの確率で\n",probability);
+// 右辺の値をポインタの指すアドレスへ渡す
+*a_0 = entanglement[0][0];
+*a_1 = entanglement[1][0];
+*a_2 = entanglement[2][0];
+*a_3 = entanglement[3][0];
 
-return entanglement[1][0];
 }
 #endif

@@ -7,15 +7,15 @@
 int shuffle(int a[],int x);
 
 //ビット乱数生成関数
-int ran(int tgt[],int try,int decimal){	//a[]:乱数を代入したい配列　x:配列の要素数（試行回数）y:要素を示す進数の形式
+int ran(int tgt[], int try, int decimal){	//a[]:乱数を代入したい配列　x:配列の要素数（試行回数）y:要素を示す進数の形式
   init_genrand((unsigned)time(NULL));	//メルセンヌ・ツイスタのシードをtimeベースで指定
 	if(decimal==2){		//2進数にて乱数表示
 		for(int i=0;i<try;i++){
 			tgt[i] = genrand_int32()%2;
 		}
-	}else if(decimal==3){
+	}else if(decimal==4){
 		for(int i=0;i<try;i++){
-			tgt[i] = genrand_int32()%3;
+			tgt[i] = genrand_int32()%4;
 		}
 	}else if(decimal==10){	//10進数にて乱数表示->各配列はすでに10進数にて初期化されている
 		shuffle(tgt,decimal);	//配列の要素数(x)の数のうち、乱数の要素数(x')の乱数を取得したい->まずはx個の乱数を取得し、呼び出し時にx'個取得する
